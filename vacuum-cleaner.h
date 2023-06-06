@@ -4,8 +4,9 @@
 #pragma once
 
 #include <iostream>
+#include "agent.h"
 
-class VacuumCleaner
+class VacuumCleaner : Agent
 {
 public:
 	VacuumCleaner();
@@ -20,6 +21,9 @@ private:
 	void no_op();
 	void check_clean();
 	int pos_x, pos_y;
+	int id;
+	bool agent_collission = false;
+	bool environment_collission = false;
 };
 
 VacuumCleaner::VacuumCleaner()

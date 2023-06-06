@@ -76,6 +76,10 @@ void Environment::randomize_dirt(float dirt_index)
 	this->dirty_cells = dirt_cell_count;
 }
 
+void Environment::place_agents(int, AgentList)
+{
+}
+
 
 // -1 indicates dirty
 int Environment::get_state(int pos_x, int pos_y)

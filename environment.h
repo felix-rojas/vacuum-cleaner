@@ -2,14 +2,13 @@
 #include <vector>
 #include <random>
 #include <iostream>
-#include <utility>
 #include <algorithm>
 #include <string>
-#include <iostream>
-#include <vector>
-#include <random>
 #include <set>
 #include <utility> // For std::pair
+#include "vacuum-cleaner.h"
+#include "agent-list.h"
+
 using std::vector;
 
 class Environment
@@ -26,6 +25,7 @@ public:
 	void PrintGrid();
 	void randomize_dirt();
 	void randomize_dirt(float dirt_index);
+	void place_agents(int, AgentList);
 
 private:
 	static Environment* instance;
