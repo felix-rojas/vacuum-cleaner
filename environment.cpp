@@ -58,7 +58,7 @@ void Environment::randomize_dirt(float dirt_index)
 
 	std::set<std::pair<int, int>> filledLocations;
 
-	while (dirt_cell_count < desired_dirt_cells) 
+	while (dirt_cell_count < desired_dirt_cells)
 	{
 		int randomRow = getRandomInt(0, numRows - 1);
 		int randomCol = getRandomInt(0, numCols - 1);
@@ -94,16 +94,17 @@ Environment* Environment::GetInstance(int width, int height)
 	return new Environment(width, height);
 }
 
-Environment* Environment::GetInstance(int width, int height, float dirty_factor)
+Environment* Environment::GetInstance(int width, int height, float dirt_factor)
 {
-	return new Environment(width,height,dirty_factor);
+	return new Environment(width, height, dirt_factor);
 }
 
 void Environment::PrintGrid()
 {
-	for (const auto& row : grid)
+	for (const auto& row : grid) {
 		for (const auto& element : row)
-			std::cout << " | " << element << " | ";
-	std::cout << std::endl;
+			std::cout << element << " ";
+		std::cout << std::endl;
+	}
 }
 

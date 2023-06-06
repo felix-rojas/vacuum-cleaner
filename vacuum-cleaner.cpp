@@ -1,2 +1,2 @@
-﻿// vacuum-cleaner.cpp : Defines the entry point for the application.
+﻿// vacuum-cleaner.cpp : Implements vacuum-cleaner.
 //
