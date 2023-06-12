@@ -12,7 +12,7 @@ endif()
 project ("vacuum-cleaner")
 
 # Add source to this project's executable.
-add_executable (vacuum-cleaner "main.cpp" "vacuum-cleaner.cpp" "vacuum-cleaner.h" "environment.h" "agent.h" "agent.cpp" "environment.cpp")
+add_executable (vacuum-cleaner "main.cpp" "vacuum-cleaner.cpp" "vacuum-cleaner.h" "agent.h" "agent.cpp" "environment.h" "environment.cpp")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET vacuum-cleaner PROPERTY CXX_STANDARD 20)

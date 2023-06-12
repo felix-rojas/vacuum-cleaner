@@ -2,8 +2,14 @@
 #include "environment.h"
 std::random_device rd;
 
-// default contructor with random 10 by 10 environment
+Environment* Environment::instance = nullptr;
+
 Environment::Environment()
+{
+}
+
+// default contructor with random 10 by 10 environment
+void Environment::SetEnvironment()
 {
 	cols = 10;
 	rows = 10;
@@ -12,7 +18,7 @@ Environment::Environment()
 	randomize_dirt();
 }
 
-Environment::Environment(int m, int n)
+void Environment::SetEnvironment(int m, int n)
 {
 	rows = m;
 	cols = n;
@@ -20,7 +26,7 @@ Environment::Environment(int m, int n)
 	grid.resize(rows, std::vector<int>(cols));
 }
 
-Environment::Environment(int m, int n, float dirt_factor)
+void Environment::SetEnvironment(int m, int n, float dirt_factor)
 {
 	rows = m;
 	cols = n;
@@ -28,6 +34,7 @@ Environment::Environment(int m, int n, float dirt_factor)
 	grid.resize(rows, std::vector<int>(cols));
 	randomize_dirt(dirt_factor);
 }
+
 
 // Function to generate a random integer between min and max (inclusive)
 int getRandomInt(int min, int max)
@@ -44,7 +51,7 @@ void Environment::randomize_dirt()
 		for (auto& element : row)
 		{
 			element = rd() % 2;
-			if (element == 1) this->dirty_cells++;
+			if (element == 1) dirty_cells++;
 		}
 }
 
@@ -80,26 +87,25 @@ void Environment::place_agents(vector<Agent>)
 }
 
 
-// -1 indicates dirty
+// 1 indicates dirty
 int Environment::get_state(int pos_x, int pos_y)
 {
-	return grid[pos_x][pos_y];
+	return grid[pos_y][pos_x];
+}
+
+void Environment::set_state(int pos_x, int pos_y, int state)
+{
+	grid[pos_y][pos_x] = state;
 }
 
 
 Environment* Environment::GetInstance()
 {
-	return new Environment();
-}
-
-Environment* Environment::GetInstance(int width, int height)
-{
-	return new Environment(width, height);
-}
-
-Environment* Environment::GetInstance(int width, int height, float dirt_factor)
-{
-	return new Environment(width, height, dirt_factor);
+	if (instance == nullptr)
+	{
+		instance = new Environment();
+	}
+	return instance;
 }
 
 void Environment::PrintGrid()
@@ -110,4 +116,3 @@ void Environment::PrintGrid()
 		std::cout << std::endl;
 	}
 }
-

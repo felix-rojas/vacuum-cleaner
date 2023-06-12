@@ -38,3 +38,7 @@ void Agent::SetEnvironmentCollission(bool does_collide)
 {
 	this->environment_collission = does_collide;
 }
+
+void Agent::Step()
+{
+}

@@ -13,25 +13,27 @@ using std::vector;
 
 class Environment
 {
-public:
-	vector <vector <int>> grid;
-	vector <Agent> AgentList;
-	int dirty_cells;
-	int cols;
-	int rows;
-	int get_state(int, int);
-	static Environment* GetInstance();
-	static Environment* GetInstance(int, int);
-	static Environment* GetInstance(int, int, float);
-	void PrintGrid();
-	void randomize_dirt();
-	void randomize_dirt(float dirt_index);
-	void place_agents(vector <Agent>);
-
 private:
 	static Environment* instance;
 	Environment();
-	Environment(int, int);
-	Environment(int, int, float);
 	~Environment();
+
+public:
+	vector <vector <int>> grid;
+	vector <Agent> AgentList;
+	int dirty_cells = 0;
+	int cols = 0;
+	int rows = 0;
+	int get_state(int, int);
+	void set_state(int pos_x, int pos_y, int state);
+	static Environment* GetInstance();
+	void PrintGrid();
+	void SetEnvironment();
+	void SetEnvironment(int m, int n);
+	void SetEnvironment(int m, int n, float dirt_factor);
+	void randomize_dirt();
+	void randomize_dirt(float dirt_index);
+	void place_agents(vector <Agent>);
+	// delete copy contructor
+	Environment(const Environment& obj)= delete;
 };

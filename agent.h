@@ -10,6 +10,7 @@ public:
 	void SetAgentId(int);
 	void SetAgentCollission(bool);
 	void SetEnvironmentCollission(bool);
+	virtual void Step();
 
 
 protected:

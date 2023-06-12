@@ -3,15 +3,29 @@
 #include <iostream>
 #include "environment.h"
 #include "agent.h"
+#include "vacuum-cleaner.h"
 
 
 using std::cout;
 using std::endl;
 
+
 int main()
 {
-	Environment* model = Environment::GetInstance(10,10,.2);
+	Environment* model = Environment::GetInstance();
+	model->SetEnvironment();
 	model->PrintGrid();
-	cout << model->dirty_cells << endl;
+	cout << endl;
+	VacuumCleaner roomba;
+	for (size_t i = 0; i < 7; i++)
+	{
+		roomba.GetPosition(); roomba.Step();
+	}
+	roomba.GetPosition();
+
+	cout << roomba.clean_count << endl;
+
+	cout << roomba.IsStopped() << endl;
+	model->PrintGrid();
 	return 0;
 }

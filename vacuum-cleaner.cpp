@@ -1,8 +1,8 @@
-﻿#pragma once
+﻿// vacuum-cleaner.cpp : Implements vacuum-cleaner.
+//
+#pragma once
 #include "vacuum-cleaner.h"
 #include "environment.h"
-// vacuum-cleaner.cpp : Implements vacuum-cleaner.
-//
 
 Environment* model = Environment::GetInstance();
 
@@ -35,27 +35,30 @@ bool VacuumCleaner::can_move(int desired_pos_x, int desired_pos_y)
 			return true;
 		}
 	}
+	return false;
 }
 
-void VacuumCleaner::left()
+bool VacuumCleaner::left()
 {
 	if (can_move(pos_x - 1, pos_y))
 	{
-		pos_x -= 1;
+		return true;
 	}
+	return false;
 }
 
-void VacuumCleaner::right()
+bool VacuumCleaner::right()
 {
 	if (can_move(pos_x + 1, pos_y))
 	{
-		pos_x += 1;
+		return true;
 	}
+	return false;
 }
 
 void VacuumCleaner::suck()
 {
-	model->grid[pos_x][pos_y] = 0;
+	model->set_state(pos_x,pos_y,0);
 }
 
 void VacuumCleaner::no_op()
@@ -68,6 +71,40 @@ void VacuumCleaner::check_clean()
 	if (model->get_state(this->pos_x, this->pos_y) == 1)
 	{
 		suck();
+		this->clean_count+=1;
 	}
 }
 
+void VacuumCleaner::Step()
+{
+	check_clean();
+	if (!right())
+	{
+		no_op();
+		if (stand_still >= 3) stopped = true;
+	}
+	else
+	{
+		this->pos_x += 1;
+	}
+}
+
+void VacuumCleaner::GetPosition()
+{
+	std::cout << this->pos_x << ",";
+	std::cout << this->pos_y << std::endl;
+}
+
+bool VacuumCleaner::IsStopped()
+{
+	if (this->stopped)
+	{
+		return true;
+	}
+	return false;
+}
+
+int VacuumCleaner::IsStill()
+{
+	return this->stand_still;
+}
