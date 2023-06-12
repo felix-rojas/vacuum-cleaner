@@ -1,6 +1,5 @@
 #pragma once
 #include "environment.h"
-
 std::random_device rd;
 
 // default contructor with random 10 by 10 environment
@@ -76,7 +75,7 @@ void Environment::randomize_dirt(float dirt_index)
 	this->dirty_cells = dirt_cell_count;
 }
 
-void Environment::place_agents(int, AgentList)
+void Environment::place_agents(vector<Agent>)
 {
 }
 

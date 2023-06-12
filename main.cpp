@@ -1,7 +1,8 @@
 ﻿// main.cpp : Defines the entry point for the application.
 //
-#include<iostream>
+#include <iostream>
 #include "environment.h"
+#include "agent.h"
 
 
 using std::cout;

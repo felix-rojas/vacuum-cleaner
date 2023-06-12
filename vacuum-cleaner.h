@@ -14,55 +14,13 @@ public:
 	~VacuumCleaner();
 
 private:
-	int can_move();
+	bool can_move(int,int);
 	void left();
 	void right();
 	void suck();
 	void no_op();
 	void check_clean();
-	int pos_x, pos_y;
-	int id;
-	bool agent_collission = false;
-	bool environment_collission = false;
+	int pos_x = 0; 
+	int pos_y = 0;
+	int stand_still = 0;
 };
-
-VacuumCleaner::VacuumCleaner()
-{
-	pos_x, pos_y = 0;
-}
-VacuumCleaner::VacuumCleaner(unsigned int x, unsigned int y)
-{
-	pos_x = x;
-	pos_y = y;
-
-}
-VacuumCleaner::~VacuumCleaner()
-{
-}
-
-inline int VacuumCleaner::can_move()
-{
-}
-
-inline void VacuumCleaner::left()
-{
-}
-
-inline void VacuumCleaner::right()
-{
-}
-
-inline void VacuumCleaner::suck()
-{
-}
-
-inline void VacuumCleaner::no_op()
-{
-}
-
-inline void VacuumCleaner::check_clean()
-{
-}
-
-
-// TODO: Reference additional headers your program requires here.

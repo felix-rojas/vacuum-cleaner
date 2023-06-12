@@ -7,7 +7,7 @@
 #include <set>
 #include <utility> // For std::pair
 #include "vacuum-cleaner.h"
-#include "agent-list.h"
+#include "agent.h"
 
 using std::vector;
 
@@ -15,6 +15,7 @@ class Environment
 {
 public:
 	vector <vector <int>> grid;
+	vector <Agent> AgentList;
 	int dirty_cells;
 	int cols;
 	int rows;
@@ -25,7 +26,7 @@ public:
 	void PrintGrid();
 	void randomize_dirt();
 	void randomize_dirt(float dirt_index);
-	void place_agents(int, AgentList);
+	void place_agents(vector <Agent>);
 
 private:
 	static Environment* instance;
